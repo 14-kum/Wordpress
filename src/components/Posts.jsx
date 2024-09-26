@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { getPost } from "../api/PostApi";
 
-export const Posts = () => {
+ const Posts = () => {
 
  const [data, setData ] = useState([]);
 
@@ -15,9 +15,23 @@ export const Posts = () => {
     getPostData();
 
   },[])
-  return (
-    <h1 className="text-3xl font-bold underline">
-      Hello, Posts page
-    </h1>
+  return ( <section className="section-post">
+    <ul>
+      {
+        data.map((curElem) => {
+          const { id, body, title } = curElem;
+          return(
+            <li key={id}>
+              <p>{title}</p>
+              <p>{body}</p>
+              <button>Edit</button>
+              <button>Delete</button>
+            </li>
+          )
+        })
+      }
+    </ul>
+  </section>
   )
 }
+export default Posts;
